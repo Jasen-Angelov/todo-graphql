@@ -24,6 +24,9 @@ The GraphQL API is supporting the following queries and mutations:
 Requirements: Docker
 
 - Clone the repository
+- Run `composer install`
+- Run `composer run post-root-package-install`
+- Run `composer run post-create-project-cmd`
 - Run `php artisan sail:install`
 
 ## Usage
@@ -32,4 +35,4 @@ Requirements: Docker
 - Run `bash vendor/bin/sail artisan migrate`
 - Run `bash vendor/bin/sail artisan db:seed`
 
-Open your browser and go to `http://localhost/graphql` to access the GraphQL Playground.
+Open your browser and go to `http://localhost/graphiql` to access the GraphQL Playground.
