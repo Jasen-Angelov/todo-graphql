@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -30,15 +30,21 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function delete()
+    {
+        $this->projects()->delete();
+        $this->tasks()->delete();
+        return parent::delete();
+    }
 }
